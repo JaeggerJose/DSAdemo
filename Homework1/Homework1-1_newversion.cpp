@@ -46,7 +46,7 @@ int main() {
     //print the result after sorting out
     cout << "--------Output--------" << endl;
     for(int i=0;i<x;i++) {
-        cout << "Please enter the " << i+1 << " string is "<< endl;
+        cout << "The result of " << i+1 << " string is ";
         for(int j=0;j<y;j++) {
             cout << ptr[i][j];
         }

@@ -12,7 +12,7 @@ int main() {
     int x, y;
     cout << "Please enter the quantity of the string and the length limit for these strings: ";
     cin >> x >> y; // get the number of strings and their lentgh limit
-    char **ptr = (char**)malloc(x*sizeof(char));
+    char **ptr = (char**)malloc(x*sizeof(char*));
     for(int arr=0;arr<x;arr++) {
         *(ptr+arr) = (char*)malloc(y*sizeof(char));
     }
@@ -32,7 +32,6 @@ int main() {
         for(int j=0; j<name.length();j++) {
             ptr[i][j] = name[j];
         }
-        cout << ptr[i] << endl;
     }
     
     //compare and swap the string using bubble sort
@@ -46,7 +45,7 @@ int main() {
     //print the result after sorting out
     cout << "--------Output--------" << endl;
     for(int i=0;i<x;i++) {
-        cout << "Please enter the " << i+1 << " string is "<< endl;
+    	cout << "The result of " << i+1 << " string is ";
         for(int j=0;j<y;j++) {
             cout << ptr[i][j];
         }
