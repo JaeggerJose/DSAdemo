@@ -15,9 +15,9 @@ int main() {
     char **ptr = new char*[x]; //allocate the first dimension of the array
     for(int arr=0;arr<x;arr++) {
         ptr[arr] = new char[y]; //allocate the second dimension of the array
-        memset(ptr[arr], 0, sizeof ptr[arr]); //reset value of the ptr[0] and ignore the '\n' from the last input
+        memset(ptr[arr], 0, sizeof ptr[arr]); //reset value of the ptr[0] and ignore the '\n' from the last inputsds
     }
-
+	
     cin.ignore();
     
     // input the string into the dynamic array
@@ -36,7 +36,7 @@ int main() {
     
     //compare and swap the string using bubble sort
     for(int i=0; i<x-1;i++) {
-        for(int j =0;j<x-i-1;j++) {
+        for(int j =0;j<x-1;j++) {
             if(ptr[j][0]<ptr[j+1][0])
     			bubble_sort(ptr+j, ptr+j+1);
         }

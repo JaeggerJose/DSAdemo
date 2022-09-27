@@ -37,7 +37,7 @@ int main() {
     
     //compare and swap the string using bubble sort
     for(int i=0; i<x-1;i++) {
-        for(int j =0;j<x-i-1;j++) {
+        for(int j =0;j<x-1;j++) {
             if(**(ptr+j)<**(ptr+j+1))
     			bubble_sort(ptr+j, ptr+j+1);
         }
