@@ -15,10 +15,9 @@ int main() {
     char **ptr = new char*[x]; //allocate the first dimension of the array
     for(int arr=0;arr<x;arr++) {
         ptr[arr] = new char[y]; //allocate the second dimension of the array
+        memset(ptr[arr], 0, sizeof ptr[arr]); //reset value of the ptr[0] and ignore the '\n' from the last input
     }
-    
-    //reset value of the ptr[0] and ignore the '\n' from the last input
-    memset(ptr[0], 0, sizeof ptr[0]); 
+
     cin.ignore();
     
     // input the string into the dynamic array

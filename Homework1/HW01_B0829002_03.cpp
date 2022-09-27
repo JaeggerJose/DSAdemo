@@ -39,9 +39,9 @@ int main() {
     for(int i=0; i<x;i++) {
         for(int j =0;j<y;j++) {
             if(ptr[i][j]==' ') {
-                namelen[i] = j;
-                break;
-            }
+            	namelen[i] = j;
+            	break;
+			}
         }
     }
     //cout the needed added space in each string 
