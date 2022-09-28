@@ -9,31 +9,34 @@ int find_max(int *numlen, int x) {
 }
 
 int main() {
-    int x, y;
-    cout << "Please enter the quantity of the string and the length limit for these strings: ";
-    cin >> x >> y; // get the number of strings and their lentgh limit
+    int x, y=0;
+    cout << "Please enter the quantity of strings: ";
+    cin >> x; // get the number of strings and their lentgh limit
+    cin.ignore(); //ignore the '\n' from the last input
+    
+    //input the string, meanwhile counting the lentgh of string
+	string name[x];
+	int stringlen[x];
+	for(int i =0;i<x;i++) {
+		cout << "Please enter the " << i+1 << " string" << endl;
+		getline(cin, name[i]);
+		stringlen[i] = name[i].length();
+	}
+	
+	//get the longest string and allocate the memory address
+	y = find_max(stringlen, x);
+	cout << y << endl;
     char **ptr = new char*[x]; //allocate the first dimension of the array
     for(int arr=0;arr<x;arr++) {
         ptr[arr] = new char[y]; //allocate the second dimension of the array
     }
-    
-    //reset value of the ptr[0] and ignore the '\n' from the last input
-    memset(ptr[0], 0, sizeof ptr[0]); 
-    cin.ignore();
-    
+    memset(ptr[0], 0, sizeof ptr[0]); //reset value of the ptr[0]
+
     // input the string into the dynamic array
-    for(int i=0;i<x;i++) {
-        cout << "Please enter the " << i+1 << " string" << endl;
-        string name= "";
-        getline(cin, name);
-        while(name.length()>y) {
-            cout << "Your input is too long, Please input it angain" << endl;
-            getline (cin, name);
-        }
-        for(int j=0; j<name.length();j++) {
-            ptr[i][j] = name[j];
-        }
-    }
+    for(int i=0;i<x;i++)
+        for(int j=0; j<name[i].length();j++)
+            ptr[i][j] = name[i][j];
+            
     //count the len of string before space
     int namelen[x];
     for(int i=0; i<x;i++) {
@@ -49,6 +52,7 @@ int main() {
     int add_space_num[x]={0};
     for(int i=0;i<x;i++)
         add_space_num[i] = max - namelen[i];
+    
     //print the result after sorting out
     cout << "--------Output--------" << endl;
     for(int i=0;i<x;i++) {
