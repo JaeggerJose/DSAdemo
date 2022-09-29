@@ -47,8 +47,7 @@ According to the Question 1-1, we can enter some latin name, and we need to **al
 - [x] Homework 1-1 new version
 - [x] Homework 1-1 malloc version
 - [x] Homework 1-1 both selecting version
-- [x] Homework 1-2 direct print out space version
-- [ ] Homework 1-2 add space into string version
+- [x] Homework 1-2
 ---
 ### Reference
 - [2D dynamic array](https://stackoverflow.com/questions/936687/how-do-i-declare-a-2d-array-in-c-using-new)

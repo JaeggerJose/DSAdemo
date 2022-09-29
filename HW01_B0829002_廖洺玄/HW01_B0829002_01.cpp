@@ -7,7 +7,7 @@ void bubble_sort(char** a,char** b){
     *a = *b;
     *b = temp;
 }
-
+5
 int main() {
     int x, y;
     cout << "Please enter the quantity of the string and the length limit for these strings: ";

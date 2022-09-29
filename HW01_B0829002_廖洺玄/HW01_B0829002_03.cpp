@@ -58,6 +58,9 @@ int main() {
     for(int i=0;i<x;i++) {
         for(int k=0;k<add_space_num[i];k++) cout << " ";
         for(int j=0;j<y;j++) {
+            if(j>y) {
+                break;
+            }
             cout << ptr[i][j];
         }
         cout << endl;
