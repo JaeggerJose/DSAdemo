@@ -31,8 +31,9 @@ According to the Question 1-1, we can enter some latin name, and we need to **al
   6. Checking the first letter's **ASCII** and using bubble sort to sort the string from the largest value to the smallest.
   7. print the whole strings out.
 - Homework 1-2
-  1. Declare and input x and y value for the number of strings and the legth limitaion of each string.
-  2. Declare and input method for selecting the way to allocate memory. **(optional)**
+  1. Declare and input x value for the number of strings and the string array with size.
+  2. Start input string and meanwhile checking the length of each string.
+  3. find the maximum lenght of string out and insert the maxixmum string length value into y.
   3. Allocate the first dymension of the pointer arrays, and the amont of the pointer arrays is x.
   4. Allocate the second dymension of the x pointers in last pointer array, and the amount of the pointers is y.
   5. Input the string x time and insert the each letter one by one into the pointer, which the last step was allocated, meanwhile check if the inputed string is longer than y, or not.
