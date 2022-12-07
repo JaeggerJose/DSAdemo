@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 
@@ -25,6 +26,7 @@ Node* insert_val(Node* start, int coe, int e) {
     }
     return start;
 }
+
 void displayPolynomial(Node* head){
    if(head==NULL) {
        cout << "No poly" << endl;
@@ -33,10 +35,12 @@ void displayPolynomial(Node* head){
        while(tmp!=NULL) {
            cout << tmp->coe<<"x^"<<tmp->e;
            tmp=tmp->link;
-           tmp!=NULL ? cout<<"+": cout<<"\n";
+           (tmp!=NULL&&tmp->coe!=0) ? cout<<"+": cout<<"\n";
        }
    }
+   cout << endl;
 }
+
 void polymult(Node* list1, Node* list2) {
     Node* list3 = NULL;
     Node* tmp1 = list1;
@@ -49,7 +53,6 @@ void polymult(Node* list1, Node* list2) {
         tmp1 = tmp1->link;
         tmp2 = list2;
     }
-    displayPolynomial(list3);
     Node* ptr = list3;
     Node* tmp = NULL;
     while(ptr->link!=NULL) {
@@ -67,27 +70,44 @@ void polymult(Node* list1, Node* list2) {
 
 int main()
 {
+    srand(time(NULL));
     Node *list1 = NULL;
     Node *list2 = NULL;
     int fir_time, sec_time;
     cout << "Please enter how many terms you need to input in the first list!" << endl;
     cin >> fir_time;
-    cout << "And then, please enter each the coefficient and expotent in the first term" << endl;
-    for(int i=0;i<fir_time;i++) {
-        int ex, coe;
-        cout << "the " << i << " term's coefficient and expotent: ";
-        cin >> coe >> ex;
-        list1=insert_val(list1,coe,ex);
+    if(fir_time<100) {
+        cout << "And then, please enter each the coefficient and expotent in the first term" << endl;
+        for(int i=0;i<fir_time;i++) {
+            int ex, coe;
+            cout << "the " << i << " term's coefficient and expotent: ";
+            cin >> coe >> ex;
+            list1=insert_val(list1,coe,ex);
+        }
+    } else {
+        for(int i=fir_time;i>=0;i--) {
+            int x = rand()%(i+1);
+            x == 0 ? x = 1 : 1;
+            list1=insert_val(list1,x,i);
+        }
     }
     displayPolynomial(list1);
     cout << "Please enter how many terms you need to input in the second list!" << endl;
     cin >> sec_time;
-    cout << "And then, please enter each the coefficient and expotent in the second term" << endl;
-    for(int i=0;i<sec_time;i++) {
-        int ex, coe;
-        cout << "the " << i << " term's coefficient and expotent: ";
-        cin >> coe >> ex;
-        list2=insert_val(list2 ,coe,ex);
+    if(sec_time<100) {
+        cout << "And then, please enter each the coefficient and expotent in the second term" << endl;
+        for(int i=0;i<sec_time;i++) {
+            int ex, coe;
+            cout << "the " << i << " term's coefficient and expotent: ";
+            cin >> coe >> ex;
+            list2=insert_val(list2 ,coe,ex);
+        }
+    } else {
+        for(int i=sec_time;i>=0;i--) {
+            int coef = rand() % (i+1);
+            coef == 0 ? coef = 1 : 1 ;
+            list2=insert_val(list2,i,i);
+        }
     }
     displayPolynomial(list2);
     polymult(list1, list2);
