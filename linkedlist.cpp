@@ -9,6 +9,16 @@ struct Node {
     Node* link;
 };
 
+int count(Node* head) {
+    Node* n = head;
+    int num = 0;
+    while(n!=0) {
+        num++;   
+        n = n->link;
+    }
+    return num;
+}
+
 Node* insert_val(Node* start, int coe, int e) {
     Node* tmp;
     Node* n = new Node(); //allocate memory for new node and insert value into it.
@@ -26,6 +36,41 @@ Node* insert_val(Node* start, int coe, int e) {
     }
     return start;
 }
+
+Node* swap(struct Node* ptr1, struct Node* ptr2)
+{
+    Node* tmp = ptr2->link;
+    ptr2->link = ptr1;
+    ptr1->link = tmp;
+    return ptr2;
+}
+
+int bubblesort(struct Node** head, int count)
+{
+    struct Node** h;
+    int i, j, swapped;
+  
+    for (i = 0; i <  count; i++)
+    {
+        h = head;
+        swapped = 0;
+        for (j = 0; j < count-i-1; j++) 
+        {
+            Node* p1 = *h;
+            Node* p2 = p1->link;
+            if (p1->e < p2->e)
+            {
+                *h = swap(p1, p2);
+                swapped = 1;
+            }
+            h = &(*h)->link;
+        }
+        if (swapped == 0)
+            break;
+    }
+    return 0;
+}
+
 
 void displayPolynomial(Node* head){
    if(head==NULL) {
@@ -55,6 +100,8 @@ void polymult(Node* list1, Node* list2) {
     }
     Node* ptr = list3;
     Node* tmp = NULL;
+    int size_list3 = count(list3);
+    //bubblesort(&list3, size_list3);
     while(ptr->link!=NULL) {
         if(ptr->e==ptr->link->e) {
             ptr->coe = ptr->coe + ptr->link->coe;
@@ -85,12 +132,14 @@ int main()
             list1=insert_val(list1,coe,ex);
         }
     } else {
-        for(int i=fir_time;i>=0;i--) {
+        for(int i=fir_time;i>0;i--) {
             int x = rand()%(i+1);
             x == 0 ? x = 1 : 1;
             list1=insert_val(list1,x,i);
         }
     }
+    int size_list1 = count(list1);
+    //bubblesort(&list1, size_list1);
     displayPolynomial(list1);
     cout << "Please enter how many terms you need to input in the second list!" << endl;
     cin >> sec_time;
@@ -103,12 +152,14 @@ int main()
             list2=insert_val(list2 ,coe,ex);
         }
     } else {
-        for(int i=sec_time;i>=0;i--) {
-            int coef = rand() % (i+1);
-            coef == 0 ? coef = 1 : 1 ;
-            list2=insert_val(list2,i,i);
+        for(int i=sec_time;i>0;i--) {
+            int x = rand()%(i+1);
+            x == 0 ? x = 1 : 1;
+            list2=insert_val(list2,x,i);
         }
     }
+    int size_list2 = count(list2);
+    //bubblesort(&list2, size_list2);
     displayPolynomial(list2);
     polymult(list1, list2);
     return 0;
