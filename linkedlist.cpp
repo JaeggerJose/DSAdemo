@@ -78,15 +78,15 @@ void removeDuplicates(Node* start)
     }
 }
 //swappeing 2 Nodes
-Node* swap(struct Node* ptr1, struct Node* ptr2) {
+Node* swap(Node* ptr1, Node* ptr2) {
     Node* tmp = ptr2->link;
     ptr2->link = ptr1;
     ptr1->link = tmp;
     return ptr2;
 }
 // Bubble sort for swaping node according to the exp of each node
-int bubblesort(struct Node** head, int count) {
-    struct Node** h;
+int bubblesort(Node** head, int count) {
+    Node** h;
     int i, j, swapped;
 
     for (i = 0; i <  count; i++)
