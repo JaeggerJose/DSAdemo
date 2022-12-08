@@ -109,7 +109,7 @@ int bubblesort(struct Node** head, int count) {
     }
     return 0;
 }
-
+// print out polynominal
 void displayPolynomial(Node* head) {
    if(head==NULL) {
        cout << "No poly" << endl;
@@ -123,7 +123,7 @@ void displayPolynomial(Node* head) {
    }
    cout << endl;
 }
-
+//non-dense multiply
 void polymult(Node* list1, Node* list2) {
     Node* list3 = NULL;
     Node* tmp1 = list1;
@@ -147,7 +147,7 @@ void polymult(Node* list1, Node* list2) {
     displayPolynomial(list3);
     cout << "Time waste is: " << (END - START) / CLOCKS_PER_SEC <<" second(s)"<< endl;
 }
-
+//dense multiply
 void dense_polymult(Node* list1, Node* list2) {
     Node* tmp1 = list1;
     Node* tmp2 = list2;
@@ -260,11 +260,12 @@ int main() {
     while(arg1!=NULL) {
         if(arg1->link!=NULL) {
             if(arg1->e==(arg1->link->e)+1) {
-                cout << arg1->e << arg1->link->e+1;
                 dense = true;
             }
-            else
+            else {
                 dense = false;
+                break;
+            }
         }
         arg1 = arg1->link;
     }
