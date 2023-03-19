@@ -22,7 +22,7 @@ void QuickSort(vector<int>& v,int left,int right) {
     if(left<right) {
         int i=left,j=right+1,pivot=v[left];
         do {
-            do i++; while(pivot>v[i]);
+            do i++; while(pivot>v[i]&&i<=right);
             do j--; while(pivot<v[j]);
             if(i<j) swap(v[i],v[j]);
         }while(i<j);
@@ -31,40 +31,27 @@ void QuickSort(vector<int>& v,int left,int right) {
         QuickSort(v,j+1,right);
     }
 }
+void MergePass(int low, int mid, int high, vector<int> &nums) {
+    if (low >= high) return;
+    int l = low, r = mid + 1, k = 0, size = high - low + 1;
+    vector<int> sorted(size, 0);
+    while (l <= mid and r <= high)
+        sorted[k++] = nums[l] < nums[r] ? nums[l++] : nums[r++];
+    while (l <= mid) 
+        sorted[k++] = nums[l++];
+    while (r <= high) 
+        sorted[k++] = nums[r++];
+    for (k = 0; k < size; k++)
+        nums[k + low] = sorted[k];
+}
 
-void merge(vector<int>& nums,int l, int r, int m){
-    int n=nums.size();
-    vector<int> ans(r-l+1);
-    int i=l,j=m+1,k=0;
-    while(i<=m && j<=r){
-        if(nums[i]<=nums[j]){
-            ans[k++]=nums[i++];
-        }
-        else{
-            ans[k++]=nums[j++];
-        }
+void MergeSort(vector<int>& nums, int start, int end){
+    if(start < end){
+        int mid=start+(end-start)/2;
+        MergeSort(nums, start, mid);
+        MergeSort(nums, mid + 1, end);
+        MergePass(start, mid, end, nums);
     }
-    while(i<=m){
-        ans[k++]=nums[i++];
-    }
-    while(j<=r){
-        ans[k++]=nums[j++];
-    }
-    for(int i=0;i<=r-l;i++){
-        nums[l+i]=ans[i];
-    }
-}
-void mergesort(vector<int>& nums,int l,int r){
-    if(l>=r)
-        return;
-    int m=l+(r-l)/2;
-    mergesort(nums,l,m);
-    mergesort(nums,m+1,r);
-    merge(nums,l,r,m);
-}
-void sortArray(vector<int>& nums) {
-    int n=nums.size();
-    mergesort(nums,0,n-1);
 }
 
 void Adjust(vector<int>& v, int root, int n) {
@@ -94,7 +81,7 @@ void CheckVector(vector<int> v,int size_v) {
         if(v[i]>v[i+1]) {
             cout<<"ERROR!"<<endl;
             return;
-        }
+ }
     }
     cout << "Richtig"<<endl;
 }
@@ -107,7 +94,7 @@ int main() {
     cin>>num;
     for(int i=0;i<num;i++) {
         unsigned x=rand(), y=rand();
-        unsigned tmp=((x+y)%50000)+1; 
+        unsigned tmp=((x+y)%50000)+1;
         v.push_back(tmp);
     }
     cout<<"Please Select the sorting method:(0.InsertionSort 1.QuickSort 2.MergeSort 3.HeapSort)";
@@ -123,7 +110,7 @@ int main() {
     else if(method==1)
         QuickSort(v,0,v.size()-1);
     else if(method==2)
-        sortArray(v);
+        MergeSort(v,0,v.size()-1);
     else if(method==3)
         HeapSort(v,v.size());
     clock_t end_time = clock(); // end the timer
@@ -132,3 +119,4 @@ int main() {
     cout<<"It takes time: " << double(end_time - begin_time)/CLOCKS_PER_SEC << endl;
     return 0;
 }
+
