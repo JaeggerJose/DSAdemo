@@ -139,7 +139,7 @@ int main() {
     else if(method==3)
         HeapSort(v,v.size());
     clock_t end_time = clock(); // end the timer
-    //PrintVector(v,v.size()); //want to print out all records open it.
+    PrintVector(v,v.size()); //want to print out all records open it.
     CheckVector(v,v.size()); //to Check the Vector is increasing or not
     cout<<"It takes time: " << double(end_time - begin_time)/CLOCKS_PER_SEC << endl;
     return 0;
